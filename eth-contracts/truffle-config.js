@@ -24,6 +24,15 @@
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const dotenv = require('dotenv');
+dotenv.config();
+
+
+console.log('process.env.HOST', process.env.HOST);
+console.log('process.env.PORT', process.env.PORT);
+
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -35,6 +44,8 @@ module.exports = {
    * $ truffle test --network <network-name>
    */
 
+   
+
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
@@ -42,11 +53,11 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-     development: {
-      host: "127.0.0.1",     // Localhost (default: none)
-      port: 8545,            // Standard Ethereum port (default: none)
-      network_id: "*",       // Any network (default: none)
-     },
+    development: {
+      host: process.env.HOST,
+      port: process.env.PORT,
+      network_id: "*" // Match any network id
+    },
 
     // Another network with more advanced options...
     // advanced: {
@@ -79,13 +90,13 @@ module.exports = {
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
-    // timeout: 100000
+    timeout: 100000
   },
 
   // Configure your compilers
   compilers: {
     solc: {
-      // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
+      //version: "0.5.7",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
@@ -96,4 +107,6 @@ module.exports = {
       // }
     }
   }
+
+  
 }

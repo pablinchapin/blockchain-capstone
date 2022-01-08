@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.5.0 <=0.9.0;
+
 /*
 
 ORACLIZE_API
@@ -24,7 +27,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 */
-pragma solidity >= 0.5.0; // Incompatible compiler version - please select a compiler within the stated pragma range, or use a different version of the oraclizeAPI!
+// pragma solidity >= 0.5.0; // Incompatible compiler version - please select a compiler within the stated pragma range, or use a different version of the oraclizeAPI!
 
 // Dummy contract only used to emit to end-user they are using wrong solc
 contract solcChecker {
@@ -316,8 +319,8 @@ contract usingOraclize {
     }
 
     function oraclize_setNetwork(uint8 _networkID) internal returns (bool _networkSet) {
-      return oraclize_setNetwork();
       _networkID; // silence the warning and remain backwards compatible
+      return oraclize_setNetwork();
     }
 
     function oraclize_setNetworkName(string memory _network_name) internal {
@@ -364,13 +367,15 @@ contract usingOraclize {
         return false;
     }
 
-    function __callback(bytes32 _myid, string memory _result) public {
+    //PVM 30/12/2021
+    function __callback(bytes32 _myid, string memory _result) public pure {
         __callback(_myid, _result, new bytes(0));
     }
 
-    function __callback(bytes32 _myid, string memory _result, bytes memory _proof) public {
-      return;
+    //PVM 30/12/2021
+    function __callback(bytes32 _myid, string memory _result, bytes memory _proof) public pure {
       _myid; _result; _proof; // Silence compiler warnings
+      return;      
     }
 
     function oraclize_getPrice(string memory _datasource) oraclizeAPI internal returns (uint _queryPrice) {

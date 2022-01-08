@@ -1,11 +1,14 @@
-pragma solidity >=0.4.21 <0.6.0;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.5.0 <=0.9.0;
+pragma experimental ABIEncoderV2;
 
 // TODO define a contract call to the zokrates generated solidity contract <Verifier> or <renamedVerifier>
-
-
+import "./verifier.sol";
 
 // TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class
-
+import "./ERC721Mintable.sol";
+//is CustomERC721Token, Verifier {
+contract SolnSquareVerifier { 
 
 
 // TODO define a solutions struct that can hold an index & an address
@@ -32,7 +35,7 @@ pragma solidity >=0.4.21 <0.6.0;
 
   
 
-
+}
 
 
 
