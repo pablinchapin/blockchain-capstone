@@ -10,17 +10,23 @@ contract('TestVerifier', async (accounts) => {
     const account_zero = accounts[0];
     const account_one = accounts[1];
 
+    let instance;
+
+    before('Test setup', async() => {
+        instance = await Verifier.new( { from : account_zero } );
+    })
+
     describe('Verification proof', function () {
 
         beforeEach(async function () {
-            this.instance = await Verifier.new( { from : account_zero } );
+            //this.instance = await Verifier.new( { from : account_zero } );
         });
 
         // Test verification with correct proof
         
         it(`Test verification with correct proof`, async function () {
             //const result = true;
-            const result = await this.instance.verifyTx(
+            let result = await instance.verifyTx(
                 proofJson.proof,
                 proofJson.inputs               
             );
@@ -32,7 +38,7 @@ contract('TestVerifier', async (accounts) => {
         // Test verification with incorrect proof
         it(`Test verification with incorrect proof`, async function () {
             //const result = false;
-            const result = await this.instance.verifyTx(
+            let result = await instance.verifyTx(
                 proofJson.proof,
                 [3,6]     
             );
