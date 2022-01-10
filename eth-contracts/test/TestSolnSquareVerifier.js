@@ -33,16 +33,36 @@ contract('TestSolnSquareVerifier', async (accounts) => {
 
         // Test if a new solution can be added for contract - SolnSquareVerifier
         it(`Test if a new solution can be added for contract`, async function () {
-            const tokenId = 2;
+            const tokenId = 1;
             let transaction = await solnSquareVerifierInstance.addSolution(tokenId, account_zero);
             //console.log("transaction -> ", transaction);
-            assert.equal(transaction.logs[0].event, 'SolutionIsAdded', "solution can be added for contract");
+            assert.equal(transaction.logs[0].event, "SolutionIsAdded", "solution can be added for contract");
         });
 
         // Test if an ERC721 token can be minted for contract - SolnSquareVerifier
         it(`Test if an ERC721 token can be minted for contract`, async function () {
+            const tokenId = 2;
+            let minted = true;
+            let transaction;
+
+            try{
+                //let transaction = await solnSquareVerifierInstance.mintNewNFT(tokenId, account_zero);
+                transaction = await solnSquareVerifierInstance.mintNewNFT(
+                    tokenId, 
+                    account_zero
+                    //proofJson.proof,
+                    //proofJson.inputs
+                );
+            }catch(error){
+                    console.log('error -> ', error);
+                    minted = false;
+            }
             
-            assert.equal(true, true, "ERC721 token can be minted");
+            
+            //assert.equal(true, true, "ERC721 token can be minted");
+            //assert.equal(transaction.logs[0].event, "SolutionsIsMinted", "ERC721 token can be minted");
+            assert.equal(transaction.logs[0].event, "SolutionIsAdded", "solution can be added for contract");
+            assert.equal(true, minted, "ERC721 token can be minted");
         });
 
     });

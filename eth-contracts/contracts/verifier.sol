@@ -19,6 +19,14 @@ library Pairing {
         uint[2] X;
         uint[2] Y;
     }
+
+
+    struct Proof {
+        G1Point a;
+        G2Point b;
+        G1Point c;
+    }
+
     /// @return the generator of G1
     function P1() pure internal returns (G1Point memory) {
         return G1Point(1, 2);
@@ -156,11 +164,13 @@ contract Verifier {
         Pairing.G2Point delta;
         Pairing.G1Point[] gamma_abc;
     }
+    /*
     struct Proof {
         Pairing.G1Point a;
         Pairing.G2Point b;
         Pairing.G1Point c;
     }
+    */
     function verifyingKey() pure internal returns (VerifyingKey memory vk) {
         vk.alpha = Pairing.G1Point(uint256(0x147bedf48852e7fa0350ad1073c1005488335fdb753e9667fac0ed5556db82ec), uint256(0x206cde47819e0d5bf3c882242b01de31e258b0d637009b481455cd55f91aa34d));
         vk.beta = Pairing.G2Point([uint256(0x25d07db36d1841ccdb0e60aa8ae336f64aa8bdf8b357cdb9617240e949773552), uint256(0x2472dcf6487c538e34bca00079a8cd41409d5f8c8571f669b85f0c194752e8c9)], [uint256(0x08c13b43d36a494c5d0bfed71505367a86272e59e0f96ea9e2234847874bdee5), uint256(0x145ffd61c90ba48cf626d6b728e7e6e39a8dda1777861d2099ccd5488c40027b)]);
@@ -171,7 +181,7 @@ contract Verifier {
         vk.gamma_abc[1] = Pairing.G1Point(uint256(0x1f80ab8d21c44d076c9cb8a7199f292584845b384c3e145c31ada6ee6474b755), uint256(0x212a52bf6ed8705fb188e7b623b26673611a0443b4206136820f527161530456));
         vk.gamma_abc[2] = Pairing.G1Point(uint256(0x272c678ce48a4d077deb3cb938d82ce7e0f94a45233c8a27926d74c054006c5c), uint256(0x2ad8e98afe7a0c7172c8840e65e5425863217f1976a44b04cdd1015c584e564f));
     }
-    function verify(uint[] memory input, Proof memory proof) internal view returns (uint) {
+    function verify(uint[] memory input, Pairing.Proof memory proof) internal view returns (uint) {
         uint256 snark_scalar_field = 21888242871839275222246405745257275088548364400416034343698204186575808495617;
         VerifyingKey memory vk = verifyingKey();
         require(input.length + 1 == vk.gamma_abc.length);
@@ -190,8 +200,8 @@ contract Verifier {
         return 0;
     }
     function verifyTx(
-            Proof memory proof, uint[2] memory input
-        ) public view returns (bool r) {
+        Pairing.Proof memory proof, uint[2] memory input
+    ) public view returns (bool r) {
         uint[] memory inputValues = new uint[](2);
         
         for(uint i = 0; i < input.length; i++){
