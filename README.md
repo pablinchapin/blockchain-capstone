@@ -787,7 +787,7 @@ https://testnets.opensea.io/assets/0x9a6e9809dc26d9fc44e0353cd230273e97e6925c/12
 https://testnets.opensea.io/assets/0x9a6e9809dc26d9fc44e0353cd230273e97e6925c/15
 
 ## Token Storefront on Opensea
-https://testnets.opensea.io/collection/unidentified-contract-ruec4s7t7p
+https://testnets.opensea.io/collection/pvm-capstone-project
 
 
 
