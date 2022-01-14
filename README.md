@@ -790,6 +790,13 @@ https://testnets.opensea.io/assets/0x9a6e9809dc26d9fc44e0353cd230273e97e6925c/15
 https://testnets.opensea.io/collection/pvm-capstone-project
 
 
+## transactions on market place
+https://rinkeby.etherscan.io/tx/0xda063eb8c298172066e12ea8cfd37831838a8731eda030cc5b977da3ba4adb28
+https://rinkeby.etherscan.io/tx/0xc11764d6f89b8c38aeea697fa5f6b7d029a3fd38cce4688b7d62fbb9855ff790
+https://rinkeby.etherscan.io/tx/0xe192588df88790707cc9b446653a3a72654379a667e9005ac8cd15e43756362f
+https://rinkeby.etherscan.io/tx/0x9f2010a078ee7e9736cd7bfb8f7bfe64ed8792fbbccaa3f062dd1b44af04b886
+https://rinkeby.etherscan.io/tx/0x43f9ef74849b5df2d48dc215bf1cbc016e876522103ddc1aee16e7e45b84d43f
+
 
 # Project Resources
 
